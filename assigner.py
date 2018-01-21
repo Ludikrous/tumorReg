@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score
 
-logfile = open('logfile.csv', 'a')
+#logfile = open('logfile.csv', 'a')
 
 # Loading the data
 # Loading the entire dataset (569 entries)
