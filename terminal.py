@@ -25,8 +25,7 @@ def AIholder(algorithm):
         func = algorithm(*args, **kwargs)
         func.fit(train_features, train_labels)
         predicted_labels = func.predict(test_features)
-        print(str(k) +' = '+ str(accuracy_score(test_labels,predicted_labels)))
-        logfile.write( str(accuracy_score(test_labels,predicted_labels)) + ', ')
+        print( str(accuracy_score(test_labels,predicted_labels)) )
         return
     return wrapper
 
@@ -36,7 +35,7 @@ def knn_ai(logfile, train_features, train_labels, test_features, test_labels, k)
 
 @AIholder
 def svm_ai(logfile, train_features, train_labels, test_features, test_labels, k):
-    return SVM(C = k, kernel = 'linear', cache_size=1000)
+    return SVM(C = k, kernel = 'linear')
 
 @AIholder
 def lin_ai(logfile, train_features, train_labels, test_features, test_labels, k):
@@ -44,8 +43,6 @@ def lin_ai(logfile, train_features, train_labels, test_features, test_labels, k)
 
 
 kmax = 101
-
-print("---------------> testing knn...")
 logfile.write(headerline(kmax))
 for counter in range(5):
     for k in range(1,kmax):
@@ -53,7 +50,6 @@ for counter in range(5):
         knn_ai(logfile, train_features, train_labels, test_features, test_labels, k)
     logfile.write('\n')
 
-print("---------------> testing svm...")
 logfile.write('\n')
 logfile.write(headerline(kmax))
 for counter in range(5):
@@ -62,7 +58,6 @@ for counter in range(5):
         svm_ai(logfile, train_features, train_labels, test_features, test_labels, k)
     logfile.write('\n')
 
-print("---------------> testing linear...")
 logfile.write('\n')
 logfile.write(headerline(kmax))
 for counter in range(5):
