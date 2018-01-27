@@ -47,7 +47,7 @@ kmax = 101
 
 print("---------------> testing knn...")
 logfile.write(headerline(kmax))
-for counter in range(5):
+for counter in range(10):
     for k in range(1,kmax):
         train_features,test_features, train_labels, test_labels = train_test_split(features,labels, test_size=0.33)
         knn_ai(logfile, train_features, train_labels, test_features, test_labels, k)
@@ -56,7 +56,7 @@ for counter in range(5):
 print("---------------> testing svm...")
 logfile.write('\n')
 logfile.write(headerline(kmax))
-for counter in range(5):
+for counter in range(10):
     for k in range(1,kmax):
         train_features,test_features, train_labels, test_labels = train_test_split(features,labels, test_size=0.33)
         svm_ai(logfile, train_features, train_labels, test_features, test_labels, k)
@@ -65,7 +65,7 @@ for counter in range(5):
 print("---------------> testing linear...")
 logfile.write('\n')
 logfile.write(headerline(kmax))
-for counter in range(5):
+for counter in range(10):
     for k in range(1,kmax):
         train_features,test_features, train_labels, test_labels = train_test_split(features,labels, test_size=0.33)
         lin_ai(logfile, train_features, train_labels, test_features, test_labels, k)
