@@ -18,14 +18,15 @@ def headerline(kmax):
     line = ''
     for i in range(1, kmax):
         line = line + str(i) + ", "
-    return line + '\n'
+    return 'pass, type, ' + line + '\n'
 
 def AIholder(algorithm):
     def wrapper(*args, **kwargs):
         func = algorithm(*args, **kwargs)
         func.fit(train_features, train_labels)
         predicted_labels = func.predict(test_features)
-        print( str(accuracy_score(test_labels,predicted_labels)) )
+        print(str(k) +' = '+ str(accuracy_score(test_labels,predicted_labels)))
+        logfile.write( str(accuracy_score(test_labels,predicted_labels)) + ', ')
         return
     return wrapper
 
@@ -35,7 +36,7 @@ def knn_ai(logfile, train_features, train_labels, test_features, test_labels, k)
 
 @AIholder
 def svm_ai(logfile, train_features, train_labels, test_features, test_labels, k):
-    return SVM(C = k, kernel = 'linear')
+    return SVM(C = k, kernel = 'linear', cache_size=7000)
 
 @AIholder
 def lin_ai(logfile, train_features, train_labels, test_features, test_labels, k):
@@ -43,25 +44,24 @@ def lin_ai(logfile, train_features, train_labels, test_features, test_labels, k)
 
 
 kmax = 101
+
+print("---------------> testing knn...")
 logfile.write(headerline(kmax))
-for counter in range(5):
+for counter in range(10):
+    train_features,test_features, train_labels, test_labels = train_test_split(features,labels, test_size=0.33)
+    print("---------------> testing knn...")
+    logfile.write(str(counter) + ',knn,')
     for k in range(1,kmax):
-        train_features,test_features, train_labels, test_labels = train_test_split(features,labels, test_size=0.33)
         knn_ai(logfile, train_features, train_labels, test_features, test_labels, k)
     logfile.write('\n')
-
-logfile.write('\n')
-logfile.write(headerline(kmax))
-for counter in range(5):
+    print("---------------> testing svm...")
+    logfile.write(str(counter) + ',svm,')
     for k in range(1,kmax):
-        train_features,test_features, train_labels, test_labels = train_test_split(features,labels, test_size=0.33)
         svm_ai(logfile, train_features, train_labels, test_features, test_labels, k)
     logfile.write('\n')
-
-logfile.write('\n')
-logfile.write(headerline(kmax))
-for counter in range(5):
+    print("---------------> testing linear...")
+    logfile.write(str(counter) + ',lin,')
     for k in range(1,kmax):
-        train_features,test_features, train_labels, test_labels = train_test_split(features,labels, test_size=0.33)
         lin_ai(logfile, train_features, train_labels, test_features, test_labels, k)
+    logfile.write('\n')
     logfile.write('\n')
