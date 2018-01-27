@@ -36,11 +36,11 @@ def knn_ai(logfile, train_features, train_labels, test_features, test_labels, k)
 
 @AIholder
 def svm_ai(logfile, train_features, train_labels, test_features, test_labels, k):
-    return SVM(C = k, kernel = 'linear', cache_size=1000)
+    return SVM(C = k, kernel = 'linear', cache_size=7000)
 
 @AIholder
 def lin_ai(logfile, train_features, train_labels, test_features, test_labels, k):
-    return LGR(penalty='l2', C = k, solver='liblinear')
+    return LGR(penalty='l2', C = k, solver='liblinear', cache_size=7000)
 
 
 kmax = 101
