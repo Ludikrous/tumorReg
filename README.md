@@ -1,6 +1,6 @@
 # tumorReg
 
-This repository contains some code I used for my project submitted to the Intel International Sceince and Engineering Fair 2019.
+This repository contains some code I used for my project submitted to the Intel International Sceince and Engineering Fair 2018.
 
 [You can take a look at the project's paper and poster here.](https://www.dhanvee.xyz/projects.html)
 
